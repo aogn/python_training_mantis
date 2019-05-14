@@ -12,7 +12,6 @@ class ProjectHelper:
 
     def open_projects_to_manage(self):
         wd = self.app.wd
-        self.open_home_page()
         wd.find_element_by_link_text("Manage").click()
         wd.find_element_by_link_text("Manage Projects").click()
 
@@ -40,9 +39,11 @@ class ProjectHelper:
     def get_project_list(self):
         if self.project_cache is None:
             wd = self.app.wd
+            self.open_projects_to_manage()
             self.project_cache = []
-            for row in wd.find_elements_by_css_selector("tr:nth-of-type(n+2)"):
+            for row in wd.find_elements_by_css_selector("tr.row-1, tr.row-2"):
                 cells = row.find_elements_by_css_selector("td")
                 text_name = cells[0].text
                 self.project_cache.append(Project(name=text_name))
         return list(self.project_cache)
+
