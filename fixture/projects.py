@@ -47,3 +47,18 @@ class ProjectHelper:
                 self.project_cache.append(Project(name=text_name))
         return list(self.project_cache)
 
+    def select_project_by_index(self, index):
+        wd = self.app.wd
+        row = wd.find_elements_by_css_selector("tr.row-1, tr.row-2")[index]
+        cell = row.find_elements_by_css_selector("td")[1]
+        cell.click()
+
+    def delete_project_by_index(self, index):
+        wd = self.app.wd
+        self.open_projects_to_manage()
+        self.select_project_by_index(index)
+        wd.find_element_by_css_selector("input[value='Delete Project']").click()
+        wd.find_element_by_css_selector("input[value='Delete Project']").click()
+        self.project_cache = None
+
+
