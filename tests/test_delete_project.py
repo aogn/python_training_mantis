@@ -8,7 +8,7 @@ def test_delete_project(app):
     old_projects = app.project.get_project_list()
     index = randrange(len(old_projects))
     project = old_projects[index]
-    app.project.delete_project_by_index(index)
+    app.project.delete_first_project()
     new_projects = app.project.get_project_list()
     old_projects.remove(project)
     new_projects == old_projects
