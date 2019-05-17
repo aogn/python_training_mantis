@@ -47,7 +47,6 @@ class ProjectHelper:
                 self.project_cache.append(Project(name=text_name))
         return list(self.project_cache)
 
-
     def delete_first_project(self):
         wd = self.app.wd
         self.open_projects_to_manage()
