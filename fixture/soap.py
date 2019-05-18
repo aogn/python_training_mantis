@@ -21,7 +21,7 @@ class SoapHelper:
         client = Client("http://localhost/mantisbt-1.2.20/api/soap/mantisconnect.php?wsdl")
         self.project_cache = []
         try:
-            for element in client.service.mc_enum_get(username, password, enumeration="project"):
+            for element in client.service.mc_projects_get_user_accessible(username, password):
                 name = element.name
                 id = element.id
                 self.project_cache.append(Project(name=name, id=id))
